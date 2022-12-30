@@ -4,7 +4,7 @@ namespace metotlar_recursive_extension
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[]args)
         {
             // Recursive - Öz yinelemeli
             // 3^4
@@ -23,7 +23,7 @@ namespace metotlar_recursive_extension
             //Extension : Sayesinde metotlara hızlı bir şekilde erişim yapmamız sağlanmış olur.
             // Extension class ve metodu static olmalıdır.
 
-            var ifade = "Yusuf        Tolunay Çağlar          ";
+            var ifade = "Furkan Batuhan Kayahan       ";
             bool sonuc2 = ifade.CheckSpace();
             if(sonuc2){
                 Console.WriteLine(ifade.RemoveWhiteSpaces());
@@ -31,7 +31,7 @@ namespace metotlar_recursive_extension
                 Console.WriteLine(ifade);
             }
 
-            var ifade2 = "Yusuf Tolunay Çağlar";
+            var ifade2 = "Furkan Batuhan Kayahan ";
             System.Console.WriteLine(ifade2.MakeLowerCase());
             System.Console.WriteLine(ifade2.MakeUpperCase()); 
 
