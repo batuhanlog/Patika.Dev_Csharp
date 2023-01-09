@@ -1,0 +1,140 @@
+﻿using System;
+
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+	internal class Program
+	{
+		static void Main(string[] args)
+		{
+			/* Task-1
+      Bir konsol uygulamasında kullanıcıdan pozitif bir sayı girmesini isteyin(n).
+      Sonrasında kullanıcıdan n adet pozitif sayı girmesini isteyin. Kullanıcının girmiş olduğu sayılardan çift olanlar console'a yazdırın.
+      */
+      // odev1();
+      /* Task-2
+      Bir konsol uygulamasında kullanıcıdan pozitif iki sayı girmesini isteyin (n, m).
+      Sonrasında kullanıcıdan n adet pozitif sayı girmesini isteyin. Kullanıcının girmiş olduğu sayılardan m'e eşit yada tam bölünenleri console'a yazdırın.
+      */
+      // odev2();
+      /* Task-3
+      Bir konsol uygulamasında kullanıcıdan pozitif bir sayı girmesini isteyin (n).
+      Sonrasında kullanıcıdan n adet kelime girmesi isteyin. Kullanıcının girişini yaptığı kelimeleri sondan başa doğru console'a yazdırın.
+      */
+      /* Task-4
+      Bir konsol uygulamasında kullanıcıdan bir cümle yazması isteyin. Cümledeki toplam kelime ve harf sayısını console'a yazdırın.
+      */
+      // odev4();
+		}
+
+    static bool sayiSartlariSaglıyormu(string gelenSayi)
+    {
+      bool sonuc = int.TryParse(gelenSayi, out int outSayi);
+      if(sonuc)
+      {
+        if( outSayi > 0 ){
+          Console.WriteLine("true");
+          return true;
+        }
+        else{
+          Console.WriteLine("Lütfen sadece pozitif bir sayı giriniz!");
+          return false;
+        }
+      }else
+      {
+        Console.WriteLine("Lütfen sadece pozitif bir sayı giriniz!");
+        return false;
+      }
+      // return false;
+    }
+    static void odev1()
+    {
+      Console.WriteLine("Pozitif Bir Sayı Giriniz: ");
+      string tekrarAdedi = Console.ReadLine();
+
+      if( sayiSartlariSaglıyormu(tekrarAdedi) ){
+        int test = int.Parse(tekrarAdedi);
+        int[] gelenSayilar = new int[test];
+
+        for (int i = 0; i < test; i++)
+        {
+          Console.WriteLine("Lütfen {0}. sayıyı girin ", i+1);
+          gelenSayilar[i] = Convert.ToInt32(Console.ReadLine().Trim());
+        }
+
+        Console.Write("\n Girdiğiniz sayılar arasından çift olanları şunlardır; ");
+        for (int j = 0; j < gelenSayilar.Length; j++)
+        {
+          if( gelenSayilar[j] % 2 == 0 ){
+            Console.Write(gelenSayilar[j]+", ");
+          }
+        }
+      }
+    }
+    static void odev2()
+    {
+      Console.WriteLine("Pozitif Bir Sayı Giriniz: ");
+      string ifade1 = Console.ReadLine();
+      string ifade2 = Console.ReadLine();
+
+      if( sayiSartlariSaglıyormu(ifade1) && sayiSartlariSaglıyormu(ifade2) )
+      {
+        int sayi1 = int.Parse(ifade1);
+        int sayi2 = int.Parse(ifade2);
+        int[] sayiDizisi = new int[sayi1];
+        string result = "Girdiğiniz sayılar içerisinde [" + sayi2 + "] sayısına tam bölünen yada eşit olan sayılar bunlardır; ";
+
+        for (int i = 0; i < sayi1; i++)
+        {
+          Console.WriteLine("Lütfen {0}. sayıyı girin ", i+1);
+          sayiDizisi[i] = Convert.ToInt32(Console.ReadLine().Trim());
+        }
+        foreach (var gezici in sayiDizisi)
+        {
+          if( (gezici % sayi2 == 0) || (gezici == sayi2) ){
+            result = result +" "+ gezici;
+          }
+        }
+        Console.WriteLine(result);
+      }
+    }
+    static void odev3()
+    {
+      Console.WriteLine("Pozitif Bir Sayı Giriniz: ");
+      string ifade1 = Console.ReadLine();
+
+      if( sayiSartlariSaglıyormu(ifade1) )
+      {
+        int sayi1 = int.Parse(ifade1);
+        string[] kelimeDizisi = new string[sayi1];
+
+        for (int i = 0; i < sayi1; i++)
+        {
+          Console.WriteLine("Lütfen {0}. kelimeyi girin ", i+1);
+          kelimeDizisi[i] = Console.ReadLine().Trim();
+        }
+        Array.Reverse(kelimeDizisi);
+        foreach (var gezici in kelimeDizisi)
+        {
+          Console.WriteLine(gezici);
+        }
+      }
+    }
+    static void odev4()
+    {
+      Console.WriteLine("Bir Cümle Yazınız: ");
+      string cumle= Console.ReadLine().Trim();
+      string[] cumleDizisi= cumle.Split(' ');
+
+      string resultTopKelimeSayisi = "\n Yazdığınız cümledeki toplam kelime sayısı: ";
+      Console.WriteLine(resultTopKelimeSayisi = resultTopKelimeSayisi + cumleDizisi.Count());
+
+      int resultTopHarfSayisi = 0;
+      foreach (var gezici in cumleDizisi)
+      {
+        resultTopHarfSayisi += gezici.Length;
+      }
+      Console.WriteLine("\n Yazdığınız cümledeki toplam harf sayısı(boşluklar hariç): "+resultTopHarfSayisi);
+    }
+
+	}
+}
